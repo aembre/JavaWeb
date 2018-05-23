@@ -6,8 +6,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * ¿ª·¢Controller×¢½â£¬Õâ¸ö×¢½âÖ»ÓĞÒ»¸övalueÊôĞÔ£¬Ä¬ÈÏÖµÎª¿Õ×Ö·û´®
- * @author ÕÅÎÄ½Ü
+ * å¼€å‘Controlleræ³¨è§£ï¼Œè¿™ä¸ªæ³¨è§£åªæœ‰ä¸€ä¸ªvalueå±æ€§ï¼Œé»˜è®¤å€¼ä¸ºç©ºå­—ç¬¦ä¸²
+ * @author å¼ æ–‡æ°
  *
  */
 @Retention(RetentionPolicy.RUNTIME)

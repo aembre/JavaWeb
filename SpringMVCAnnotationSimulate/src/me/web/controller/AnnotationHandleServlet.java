@@ -57,6 +57,8 @@ public class AnnotationHandleServlet extends HttpServlet {
     }
     
     private void excute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    	request.setCharacterEncoding("UTF-8");
+    	response.setContentType("text/html;charset=UTF-8");
         //将当前线程中HttpServletRequest对象存储到ThreadLocal中，以便在Controller类中使用
         WebContext.requestHodler.set(request);
         //将当前线程中HttpServletResponse对象存储到ThreadLocal中，以便在Controller类中使用

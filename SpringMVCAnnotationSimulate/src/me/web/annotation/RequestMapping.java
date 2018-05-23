@@ -6,8 +6,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * ¿ª·¢RequestMapping×¢½â£¬ÓÃÓÚ¶¨ÒåÇëÇóÂ·¾¶£¬Õâ¸ö×¢½âÖ»ÓĞÒ»¸övalueÊôĞÔ£¬Ä¬ÈÏÖµÎª¿Õ×Ö·û´®
- * @author ÕÅÎÄ½Ü
+ * å¼€å‘RequestMappingæ³¨è§£ï¼Œç”¨äºå®šä¹‰è¯·æ±‚è·¯å¾„ï¼Œè¿™ä¸ªæ³¨è§£åªæœ‰ä¸€ä¸ªvalueå±æ€§ï¼Œé»˜è®¤å€¼ä¸ºç©ºå­—ç¬¦ä¸²
+ * @author å¼ æ–‡æ°
  *
  */
 @Retention(RetentionPolicy.RUNTIME)
