@@ -69,6 +69,7 @@ public class AnnotationHandleServlet extends HttpServlet {
         Class<?> clazz = RequestMapingMap.getRequesetMap().get(lasturl);
         if(clazz == null) {
         	request.getRequestDispatcher("/error.jsp").forward(request, response);
+        	return;
         }
         //创建类的实例
         Object classInstance = BeanUtils.instanceClass(clazz);
