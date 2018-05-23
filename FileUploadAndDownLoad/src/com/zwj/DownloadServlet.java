@@ -62,7 +62,7 @@ public class DownloadServlet extends HttpServlet {
 	/**
 	* @Method: findFileSavePathByFileName
 	* @Description: 通过文件名和存储上传文件根目录找出要下载的文件的所在路径
-	* @Anthor:孤傲苍狼
+	* @Anthor:张文杰
 	* @param filename 要下载的文件名
 	* @param saveRootPath 上传文件保存的根目录，也就是/WEB-INF/upload目录
 	* @return 要下载的文件的存储目录

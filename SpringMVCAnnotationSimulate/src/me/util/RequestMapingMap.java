@@ -4,23 +4,29 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * ´æ´¢·½·¨µÄ·ÃÎÊÂ·¾¶
- * @author ÕÅÎÄ½Ü
- * 
- */
+* @ClassName: RequestMapingMap
+* @Description: å­˜å‚¨æ–¹æ³•çš„è®¿é—®è·¯å¾„
+* @author: å¼ æ–‡æ°
+* @date: 2014-11-16 ä¸‹åˆ6:31:43
+*
+*/ 
 public class RequestMapingMap {
 
-	private static Map<String, Class<?>> requestMap = new HashMap<>();
-	
-	public static Class<?> getClassName(String path){
-		return requestMap.get(path);
-	}
-	
-	public static void put(String path, Class<?> className) {
-		requestMap.put(path, className);
-	}
-	
-	public static Map<String, Class<?>> getRequestMap(){
-		return requestMap;
-	}
+    /**
+    * @Field: requesetMap
+    *          ç”¨äºå­˜å‚¨æ–¹æ³•çš„è®¿é—®è·¯å¾„
+    */ 
+    private static Map<String, Class<?>> requesetMap = new HashMap<String, Class<?>>();
+    
+    public static Class<?> getClassName(String path) {
+        return requesetMap.get(path);
+    }
+
+    public static void put(String path, Class<?> className) {
+        requesetMap.put(path, className);
+    }
+
+    public static Map<String, Class<?>> getRequesetMap() {
+        return requesetMap;
+    }
 }

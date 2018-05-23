@@ -141,7 +141,7 @@ public class UploadHandleServletImprove extends HttpServlet {
     /**
     * @Method: makeFileName
     * @Description: 生成上传文件的文件名，文件名以：uuid+"_"+文件的原始名称
-    * @Anthor:孤傲苍狼
+    * @Anthor:张文杰
     * @param filename 文件的原始名称
     * @return uuid+"_"+文件的原始名称
     */ 
@@ -154,7 +154,7 @@ public class UploadHandleServletImprove extends HttpServlet {
      * 为防止一个目录下面出现太多文件，要使用hash算法打散存储
     * @Method: makePath
     * @Description: 
-    * @Anthor:孤傲苍狼
+    * @Anthor:张文杰
     *
     * @param filename 文件名，要根据文件名生成存储目录
     * @param savePath 文件存储路径

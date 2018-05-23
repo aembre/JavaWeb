@@ -6,83 +6,90 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
-/*
- * ¶ÔJava·´ÉäÖĞ²Ù×÷µÄÒ»Ğ©·â×°
+/**
+ * å¯¹javaåå°„ä¸­æ“ä½œçš„ä¸€äº›å°è£…
  */
 public class BeanUtils {
-
-	/**
-	 * ÊµÀı»¯Ò»¸öclass
-	 * 
-	 * @param clazz
-	 * @return
-	 */
-	public static <T> T instanceClass(Class<T> clazz) {
-		if (!clazz.isInterface()) {
-			try {
-				return clazz.newInstance();
-			} catch (InstantiationException e) {
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				e.printStackTrace();
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * Í¨¹ı¹¹Ôì·½·¨ÊµÀı»¯
-	 * @param constructor
-	 * @param args
-	 * @return
-	 * @throws InstantiationException
-	 * @throws IllegalAccessException
-	 * @throws IllegalArgumentException
-	 * @throws InvocationTargetException
-	 */
-	public static <T> T instanceClass(Constructor<T> constructor, Object... args)
-			throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		makeAccessible(constructor);
-		return constructor.newInstance(args);// µ÷ÓÃ¹¹Ôì·½·¨ÊµÀı»¯
-	}
-
-	public static Method findMethod(Class<?> clazz, String methodName, Class<?>... paramTypes) {
-		try {
-			return clazz.getMethod(methodName, paramTypes);
-		} catch (NoSuchMethodException e) {
-			return findDeclaredMethod(clazz, methodName, paramTypes);//·µ»Ø¹²ÓĞµÄ·½·¨
-		} catch (SecurityException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
-	public static Method findDeclaredMethod(Class<?> clazz, String methodName, Class<?>[] paramTypes) {
-		try {
-			return clazz.getDeclaredMethod(methodName, paramTypes);
-		} catch (NoSuchMethodException e) {
-			if(clazz.getSuperclass() != null) {
-				return findDeclaredMethod(clazz.getSuperclass(), methodName, paramTypes);
-			}
-			return null;
-		} catch (SecurityException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	public static Method[] findDeclaredMethods(Class<?> clazz) {
-		return clazz.getDeclaredMethods();
-	}
-	
-	public static Field[] findDeclaredFields(Class<?> clazz) {
-		return clazz.getDeclaredFields();
-	}
-	
-	public static void makeAccessible(Constructor<?> constructor) {
-		if ((!Modifier.isPublic(constructor.getModifiers())
-				|| !Modifier.isPublic(constructor.getDeclaringClass().getModifiers())) && !constructor.isAccessible()) {
-			constructor.setAccessible(true);// Èç¹ûÊÇË½ÓĞµÄ ÉèÖÃÎªtrue Ê¹Æä¿ÉÒÔ·ÃÎÊ
-		}
-	}
+    
+    /**
+     * å®ä¾‹åŒ–ä¸€ä¸ªclass 
+     * @param <T>
+     * @param clazz Person.class
+     * @return
+     */
+    public static <T> T instanceClass(Class<T> clazz){
+        if(clazz != null && !clazz.isInterface()){
+            try {
+                return clazz.newInstance();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+    
+    /**
+     * é€šè¿‡æ„é€ å‡½æ•°å®ä¾‹åŒ–
+     * @param <T>
+     * @param ctor
+     * @param args
+     * @return
+     * @throws IllegalArgumentException
+     * @throws InstantiationException
+     * @throws IllegalAccessException
+     * @throws InvocationTargetException
+     */
+    public static <T> T instanceClass(Constructor<T> ctor, Object... args)
+            throws IllegalArgumentException, InstantiationException, 
+            IllegalAccessException, InvocationTargetException{
+        makeAccessible(ctor);
+        return ctor.newInstance(args);//è°ƒç”¨æ„é€ æ–¹æ³•å®ä¾‹åŒ–
+    }
+    
+    /**
+     * æŸ¥æ‰¾æŸä¸ªclassçš„æ–¹æ³•
+     * @param clazz
+     * @param methodName
+     * @param paramTypes
+     * @return
+     * @throws SecurityException
+     * @throws NoSuchMethodException
+     */
+    public static  Method findMethod(Class<?> clazz, String methodName, Class<?>... paramTypes){
+        try {
+            return clazz.getMethod(methodName, paramTypes);
+        } catch (NoSuchMethodException e) {
+            return findDeclaredMethod(clazz, methodName, paramTypes);//è¿”å›å…±æœ‰çš„æ–¹æ³•
+        }
+    }
+    
+    public static Method findDeclaredMethod(Class<?> clazz, String methodName, Class<?>[] paramTypes){
+        try {
+            return clazz.getDeclaredMethod(methodName, paramTypes);
+        }
+        catch (NoSuchMethodException ex) {
+            if (clazz.getSuperclass() != null) {
+                return findDeclaredMethod(clazz.getSuperclass(), methodName, paramTypes);
+            }
+            return null;
+        }
+    }
+    
+    public static Method [] findDeclaredMethods(Class<?> clazz){
+            return clazz.getDeclaredMethods();
+    }
+    
+    public static void makeAccessible(Constructor<?> ctor) {
+        if ((!Modifier.isPublic(ctor.getModifiers()) 
+                || !Modifier.isPublic(ctor.getDeclaringClass().getModifiers()))
+                && !ctor.isAccessible()) {
+            ctor.setAccessible(true);//å¦‚æœæ˜¯ç§æœ‰çš„ è®¾ç½®ä¸ºtrue ä½¿å…¶å¯ä»¥è®¿é—®
+        }
+    }
+    
+    public static Field[] findDeclaredFields(Class<?> clazz){
+        return clazz.getDeclaredFields();
+    }
 }
